@@ -16,22 +16,6 @@
 }
 
 .card-producto{
-    width: 14rem;
-    height: 50rem;
-}
-
-
-.carrito-lista{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5rem;
-    border-bottom: 1px solid #f1f1f1;
-
-}
-
-.carrito-lista p{
-    margin: 0;
-    max-width: 6rem;
-    text-align: center;
+    width: 16rem;
+    height: 40rem;
 }
