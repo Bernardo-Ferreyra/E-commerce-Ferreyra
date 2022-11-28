@@ -75,7 +75,7 @@ document.getElementById('exampleModalLabel').innerHTML= `Estos son tus productos
 
 //busco en stockProductos el objeto y lo guardo en variable / metodo find
 // creo variable con una copia del objeto y le agrego atributo cantidad / uso spread operator
-// busco si exite con con findIndex, si no esta lo agrego al carrito 
+// busco su indice findIndex, si no esta (-1) lo agrego al carrito 
 //si exite le modifico la cantidad
 //actualizo carrito
 function agregarAlCarrito (item){
@@ -100,18 +100,26 @@ function agregarAlCarrito (item){
         
     }
     else{
-        carrito[existe].cantidad++  
+        carrito[existe].cantidad++
     }
     actualizarCarrito()
 
 }
 
-
-//.filter trae todos los productos menos al que sea distinto
+// obtengo el objeto con .find si la cantidad es mayor a uno se la resto una unidad
+//actualizo carrito
+//sino .filter trae todos los productos menos al que sea distinto
 //actualizo carrito
 function eliminarDelCarrito (item){
-    carrito = carrito.filter((prod) => prod.id !== item)
-    actualizarCarrito()
+    const prodSelecionado = carrito.find( (prod) => prod.id === item)
+    if(prodSelecionado.cantidad > 1){
+        prodSelecionado.cantidad--
+        actualizarCarrito()
+    }
+    else{
+        carrito = carrito.filter((prod) => prod.id !== item)
+        actualizarCarrito()
+    }
 }
 
 
@@ -126,7 +134,7 @@ function guardarStorage() {
 //itero por array carrito e inyecto en html / se usa desestructuracion
 //si el carrito esta vacio inyecto msj en html
 // guardo en localstorage
-let actualizarCarrito = () =>{
+function actualizarCarrito() {
 
     contenedorCarrito.innerHTML=""
         
@@ -134,7 +142,7 @@ let actualizarCarrito = () =>{
         const {id, nombre, precio, cantidad, img} = producto
         contenedorCarrito.innerHTML += `
 
-        <div class="card mb-2">
+        <div class="card mb-2 ">
             <div class="row g-0">
                 <div class="col-5 col-sm-4">
                     <img src=${img} class="img-fluid w-100 img-carrito" alt="card-horizontal-image">
@@ -172,6 +180,10 @@ vaciarCarrito.addEventListener('click',() => {
     actualizarCarrito()
 })
 
+
+// alertas de carrito con escucha de evento
+// finalizada la compra se da mensaje , se vacia el carrito
+//actualizo carrito
 confirmarCompra.addEventListener('click', () => {
     if (carrito.length === 0){
         Swal.fire({
