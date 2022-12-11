@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "nombre":"Fender Stratocaster", 
+        "marca": "fender", 
+        "descripcion":"fender estratocaster", 
+        "tipo":"guitarra electrica",
+        "precio":950, 
+        "img":"./img/stratocaster.jpg" 
+    },
+    {  
+        "id": 2,
+        "nombre":"Fender Telecaster", 
+        "marca": "fender", 
+        "descripcion":"fender telecaster", 
+        "tipo":"guitarra electrica", 
+        "precio":920, 
+        "img":"./img/telecaster.jpg" 
+    },
+    {
+        "id": 3, 
+        "nombre":"Fender Mustang", 
+        "marca": "fender", 
+        "descripcion":"fender mustang", 
+        "tipo":"guitarra electrica", 
+        "precio":880, 
+        "img":"./img/mustang.webp" 
+    },
+    {
+        "id": 4, 
+        "nombre":"Fender Jazzmaster", 
+        "marca": "fender", 
+        "descripcion":"fender jazzmaster", 
+        "tipo":"guitarra electrica", 
+        "precio":990, 
+        "img":"./img/jazzmaster.webp" 
+    },
+    {   "id": 5, 
+        "nombre":"Fender Jaguar", 
+        "marca": "fender", 
+        "descripcion":"fender jaguar", 
+        "tipo":"guitarra electrica", 
+        "precio":790, 
+        "img":"./img/jaguar.jpg" 
+    },
+    {
+        "id": 6, 
+        "nombre":"Gibson Lespaul", 
+        "marca": "gibson", 
+        "descripcion":"gibson les-paul", 
+        "tipo":"guitarra electrica", 
+        "precio":1050, 
+        "img":"./img/lespaul.jpg" 
+    },
+    {   "id": 7, 
+        "nombre":"Gibson SG", 
+        "marca": "gibson", 
+        "descripcion":"gibson sg", 
+        "tipo":"guitarra electrica", 
+        "precio":1170, 
+        "img":"./img/sg.jpg" 
+    },
+    {
+        "id": 8, 
+        "nombre":"Gibson 335", 
+        "marca": "gibson", 
+        "descripcion":"gibson 335", 
+        "tipo":"guitarra electrica", 
+        "precio":990, 
+        "img":"./img/335.jpg" 
+    } 
+]

@@ -1,30 +1,51 @@
 
-// uso de JSON y Storage, manejo de DOM y escucha de eventos        ok
-//uso Operador Ternario / AND / OR      ok
-// Usa el operador spread para replicar objetos o arrays        ok
+//Objetos y Arrays. Métodos de Arrays.   (ok)
+//Funciones y condicionales.             (ok)
+//Generación del DOM de forma dinámica. Eventos.        (ok)
+//Sintaxis avanzada.        (ok)   
+//Al menos una librería de uso relevante para el proyecto.  (ok)
+//Manejo de promesas con fetch.   (ok)
+//Carga de datos desde un JSON local o desde una API externa.  (ok)
 
 
 
+//consulta asincronica utilizando promesas
+const consultarProductos= async () => {
+    const response = await fetch('./json/productos.json')
+    const productos = await response.json()
+    return productos  
+}
 
-// objetos en array de stock y array de carrito vacio
 
-const stockProductos = [
-{id:01, nombre:"Fender Stratocaster", marca: "fender", descripcion:"fender estratocaster", tipo:"guitarra electrica", precio:950, img:"./img/stratocaster.jpg" } ,
-{id:02, nombre:"Fender Telecaster", marca: "fender", descripcion:"fender telecaster", tipo:"guitarra electrica", precio:920, img:"./img/telecaster.jpg" } ,
-{id:03, nombre:"Fender Mustang", marca: "fender", descripcion:"fender mustang", tipo:"guitarra electrica", precio:880, img:"./img/mustang.webp" } ,
-{id:04, nombre:"Fender Jazzmaster", marca: "fender", descripcion:"fender jazzmaster", tipo:"guitarra electrica", precio:990, img:"./img/jazzmaster.webp" } ,
-{id:05, nombre:"Fender Jaguar", marca: "fender", descripcion:"fender jaguar", tipo:"guitarra electrica", precio:790, img:"./img/jaguar.jpg" } ,
-{id:06, nombre:"Gibson Lespaul", marca: "gibson", descripcion:"gibson les-paul", tipo:"guitarra electrica", precio:1050, img:"./img/lespaul.jpg" } ,
-{id:07, nombre:"Gibson SG", marca: "gibson", descripcion:"gibson sg", tipo:"guitarra electrica", precio:1170, img:"./img/sg.jpg" } ,
-{id:08, nombre:"Gibson 335", marca: "gibson", descripcion:"gibson 335", tipo:"guitarra electrica", precio:990, img:"./img/335.jpg" } ,
+const stockProductos = []
 
-]
+
+
+consultarProductos().then(productos =>{
+    productos.forEach((producto) => {
+        stockProductos.push(producto)
+        const {id, nombre, descripcion, precio, img} = producto
+        contenedorProductos.innerHTML += `
+    
+        <div class="card card-producto">
+            <img src=${img} class="card-img-top" alt="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">${nombre}</h5>
+                <p class="card-text">${descripcion}</p>
+                <p class="card-text">$${precio}</p>
+                <button onclick="agregarAlCarrito(${id})"class="btn btn-primary">Agregar al carrito</button>
+            </div>
+        </div>
+        `
+        
+    })
+})
+
 
 let carrito= []
 
 
-//agrego escucha de evento cuando carga el dom 
-//obtengo carrito del localstorage / uso operador ternario
+//cuando carga el dom obtengo carrito del localstorage
 //actualizo carrito
 document.addEventListener('DOMContentLoaded',() =>{
     carrito = JSON.parse(localStorage.getItem('carrito')) || []
@@ -33,7 +54,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
 
 
-//obtengo los elementos a usar del html
+//obtengo elementos del html
 const contenedorProductos = document.getElementById('contenedor-productos')
 
 const contenedorCarrito = document.getElementById('contenedor-carrito')
@@ -43,26 +64,6 @@ const vaciarCarrito = document.getElementById('vaciar-carrito')
 const precioTotal =document.getElementById('precioTotal')
 
 const confirmarCompra = document.getElementById('confirmar-carrito')
-
-
-
-
-//inyecto productos en html / se utiliza desestructuracion
-stockProductos.forEach((producto) => {
-    const {id, nombre, descripcion, precio, img} = producto
-    contenedorProductos.innerHTML += `
-
-    <div class="card card-producto">
-        <img src=${img} class="card-img-top" alt="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">${nombre}</h5>
-            <p class="card-text">${descripcion}</p>
-            <p class="card-text">$${precio}</p>
-            <button onclick="agregarAlCarrito(${id})"class="btn btn-primary">Agregar al carrito</button>
-        </div>
-    </div>
-    `
-})
 
 
 
@@ -95,6 +96,7 @@ function agregarAlCarrito (item){
     const prodCarrito = {...prodSelecionado, cantidad:1}
 
     const existe = carrito.findIndex((prod)=> prod.id === prodCarrito.id)
+
     if(existe === -1){
         carrito.push(prodCarrito) 
         
