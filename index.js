@@ -108,6 +108,8 @@ function agregarAlCarrito (item){
 
 }
 
+
+
 // obtengo el objeto con .find si la cantidad es mayor a uno se la resto una unidad
 //actualizo carrito
 //sino .filter trae todos los productos menos al que sea distinto
@@ -203,7 +205,7 @@ confirmarCompra.addEventListener('click', () => {
             confirmButtonText: "Aceptar"
         })
 
-        carrito.length= 0
+        carrito.length = 0
         actualizarCarrito()
     }
 })
